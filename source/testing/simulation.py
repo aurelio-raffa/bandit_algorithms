@@ -11,11 +11,11 @@ class Simulation:
         self.collected_rewards = np.zeros(shape=(experiments, exploration_horizon))
 
     def run(self):
-        dialog = 'running simulation...'
+        dialog = 'running simulations...'
         print('\n>> ' + dialog, end='')
         start_time = time()
         for experiment in range(self.experiments):
-            new_dialog = 'running simulation (experiment {} of {})...'.format(experiment, self.experiments)
+            new_dialog = 'running simulations (experiment {} of {})...'.format(experiment, self.experiments)
             print('\b'*len(dialog) + new_dialog, end='')
             dialog = new_dialog
             learner = deepcopy(self.learner)
@@ -26,7 +26,7 @@ class Simulation:
             self.collected_rewards[experiment, :] = learner.collected_rewards
             self.cumulative_rewards.append(np.sum(learner.collected_rewards))
         end_time = time()
-        print('{0}simulation comlpleted in {1:.2f} seconds'.format(
+        print('{0}simulations comlpleted in {1:.2f} seconds'.format(
             '\b'*len(dialog),
             end_time-start_time))
 

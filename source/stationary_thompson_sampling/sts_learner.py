@@ -17,3 +17,6 @@ class ThompsonSamplingLearner(Learner):
     def update(self, candidate, reward):
         super().update(candidate, reward)
         self.__beta_parameters[self.candidate_indices[candidate], :] += (reward, 1 - reward)
+
+    def __str__(self):
+        return 'Thompson Sampling Learner'

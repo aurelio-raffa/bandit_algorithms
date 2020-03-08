@@ -19,3 +19,6 @@ class GreedyLearner(Learner):
         super().update(candidate, reward)
         self.__expected_rewards[self.candidate_indices[candidate]] = \
             (self.__expected_rewards[self.candidate_indices[candidate]] * (self.t - 1) + reward) / self.t
+
+    def __str__(self):
+        return 'Greedy Learner'

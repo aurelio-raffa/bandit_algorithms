@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8702f81-27cd-4cb0-a8bf-6d34674aee67" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/testing/tester.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/greedy/greedy_learner.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/greedy/greedy_learner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stationary_thompson_sampling/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/stationary_thompson_sampling/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stationary_thompson_sampling/sts_learner.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/stationary_thompson_sampling/sts_learner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/testing/__dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/testing/__dependencies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/testing/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/source/testing/simulation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +69,22 @@
       <screen x="1440" y="0" width="2560" height="1440" />
     </state>
     <state x="2184" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583675981597" />
+    <state width="2518" height="489" key="GridCell.Tab.0.bottom" timestamp="1583682186166">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="489" key="GridCell.Tab.0.bottom/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583682186166" />
+    <state width="2518" height="489" key="GridCell.Tab.0.center" timestamp="1583682186165">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="489" key="GridCell.Tab.0.center/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583682186165" />
+    <state width="2518" height="489" key="GridCell.Tab.0.left" timestamp="1583682186164">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="489" key="GridCell.Tab.0.left/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583682186164" />
+    <state width="2518" height="489" key="GridCell.Tab.0.right" timestamp="1583682186165">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="489" key="GridCell.Tab.0.right/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583682186165" />
     <state x="2229" y="359" key="SettingsEditor" timestamp="1583675932639">
       <screen x="1440" y="0" width="2560" height="1440" />
     </state>

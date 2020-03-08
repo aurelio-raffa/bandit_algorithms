@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="58937841-b4c2-4d3c-a807-9a4743131e4f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YntbwReRFb4KRv07Nv7e7HkWBq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source/greedy" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/greedy" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/stationary_thompson_sampling" />
+      <recent name="$PROJECT_DIR$/source/conversion_rate" />
+      <recent name="$PROJECT_DIR$/source/utilities" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="bandit_algorithms" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="bandit_algorithms" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/thomp_samp/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../bandit_algorithms/source/stationary_thompson_sampling" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../bandit_algorithms/source/stationary_thompson_sampling/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="bandit_algorithms" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="bandit_algorithms" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="bandit_algorithms" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58937841-b4c2-4d3c-a807-9a4743131e4f" name="Default Changelist" comment="" />
+      <created>1583590260865</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583590260865</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2184" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583674914045">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2184" y="382" key="#com.intellij.execution.impl.EditConfigurationsDialog/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583674914045" />
+    <state x="2508" y="481" key="FileChooserDialogImpl" timestamp="1583593586999">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2508" y="481" key="FileChooserDialogImpl/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583593586999" />
+    <state width="2518" height="499" key="GridCell.Tab.0.bottom" timestamp="1583674918317">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.0.bottom/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583674918317" />
+    <state width="2518" height="499" key="GridCell.Tab.0.center" timestamp="1583674918315">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.0.center/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583674918315" />
+    <state width="2518" height="499" key="GridCell.Tab.0.left" timestamp="1583674918314">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.0.left/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583674918314" />
+    <state width="2518" height="499" key="GridCell.Tab.0.right" timestamp="1583674918316">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2518" height="499" key="GridCell.Tab.0.right/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583674918316" />
+    <state x="2229" y="359" width="1152" height="779" key="SettingsEditor" timestamp="1583594777306">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2229" y="359" width="1152" height="779" key="SettingsEditor/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583594777306" />
+    <state x="2229" y="359" key="SettingsEditor/1440.0.2560.1440/0.23.1440.877@1440.0.2560.1440" timestamp="1583594617243" />
+    <state x="2385" y="331" width="670" height="676" key="search.everywhere.popup" timestamp="1583608396086">
+      <screen x="1440" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2385" y="331" width="670" height="676" key="search.everywhere.popup/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583608396086" />
+  </component>
+</project>

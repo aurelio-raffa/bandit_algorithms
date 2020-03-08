@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8702f81-27cd-4cb0-a8bf-6d34674aee67" name="Default Changelist" comment="" />
+    <list default="true" id="d8702f81-27cd-4cb0-a8bf-6d34674aee67" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +30,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RunManager" selected="Python.Dynamic Thompson Sampling">
     <configuration name="Dynamic Thompson Sampling" type="PythonConfigurationType" factoryName="Python">
@@ -133,10 +135,10 @@
       <screen x="1440" y="0" width="2560" height="1440" />
     </state>
     <state width="2518" height="500" key="GridCell.Tab.1.right/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583689255993" />
-    <state x="2229" y="359" key="SettingsEditor" timestamp="1583675932639">
+    <state x="2229" y="359" width="1354" height="722" key="SettingsEditor" timestamp="1583693471886">
       <screen x="1440" y="0" width="2560" height="1440" />
     </state>
-    <state x="2229" y="359" key="SettingsEditor/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583675932639" />
+    <state x="2229" y="359" width="1354" height="722" key="SettingsEditor/1440.0.2560.1440/0.0.1440.900@1440.0.2560.1440" timestamp="1583693471886" />
     <state x="2385" y="331" width="670" height="676" key="search.everywhere.popup" timestamp="1583684678551">
       <screen x="1440" y="0" width="2560" height="1440" />
     </state>

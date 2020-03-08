@@ -19,9 +19,10 @@ class Simulation:
             print('\b'*len(dialog) + new_dialog, end='')
             dialog = new_dialog
             learner = deepcopy(self.learner)
+            environment = deepcopy(self.environment)
             for iteration in range(self.exploration_horizon):
                 selected = learner.select_arm()
-                reward = self.environment.simulate_round(candidate=selected)
+                reward = environment.simulate_round(candidate=selected)
                 learner.update(candidate=selected, reward=reward)
             self.collected_rewards[experiment, :] = learner.collected_rewards
             self.cumulative_rewards.append(np.sum(learner.collected_rewards))

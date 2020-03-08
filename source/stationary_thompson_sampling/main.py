@@ -16,12 +16,15 @@ def main():
     gr_learner = GreedyLearner(candidates=candidates)
     ts_learner = ThompsonSamplingLearner(candidates=candidates)
 
+    # tester initialization
     tester = Tester(
         environment=environment,
         learners=(gr_learner, ts_learner),
         optimal_expected_reward=.5,
         exploration_horizon=exploration_horizon,
         experiments=experiments)
+
+    # running tests
     tester.run()
     tester.show_results()
 

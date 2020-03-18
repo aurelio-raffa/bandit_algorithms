@@ -13,7 +13,10 @@ class SlidingWindowThompsonSamplingLearner(ThompsonSamplingLearner):
             super().update(candidate, reward)
         else:
             super().update(candidate, reward)
-            exiting_value = list(self.candidates_rewards[candidate].values())[-self.memory]
+            # exiting_value = list(self.candidates_rewards[candidate].values())[-self.memory]
+            exiting_value =     \
+                self.candidates_rewards[candidate][self.t - self.memory] \
+                if (self.t - self.memory) in self.candidates_rewards[candidate].keys() else 0
             correction = [[exiting_value, 1-exiting_value]]
             fallback = [[1, 1]]
             self.beta_parameters[self.candidate_indices[candidate], :] = \

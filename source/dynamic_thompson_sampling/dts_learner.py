@@ -1,6 +1,5 @@
 from source.dynamic_thompson_sampling.__dependencies import *
 from source.stationary_thompson_sampling.sts_learner import ThompsonSamplingLearner
-from source.conversion_rate.learner import Learner
 
 
 class SlidingWindowThompsonSamplingLearner(ThompsonSamplingLearner):
@@ -9,11 +8,8 @@ class SlidingWindowThompsonSamplingLearner(ThompsonSamplingLearner):
         self.memory = memory
 
     def update(self, candidate, reward):
-        if len(self.candidates_rewards[candidate].values()) < self.memory:
-            super().update(candidate, reward)
-        else:
-            super().update(candidate, reward)
-            # exiting_value = list(self.candidates_rewards[candidate].values())[-self.memory]
+        super().update(candidate, reward)
+        if len(self.candidates_rewards[candidate].values()) >= self.memory:
             exiting_value =     \
                 self.candidates_rewards[candidate][self.t - self.memory] \
                 if (self.t - self.memory) in self.candidates_rewards[candidate].keys() else 0

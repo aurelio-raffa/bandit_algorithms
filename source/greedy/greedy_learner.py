@@ -17,8 +17,9 @@ class GreedyLearner(Learner):
 
     def update(self, candidate, reward):
         super().update(candidate, reward)
+        n = len(self.candidates_rewards[candidate].values())
         self.__expected_rewards[self.candidate_indices[candidate]] = \
-            (self.__expected_rewards[self.candidate_indices[candidate]] * (self.t - 1) + reward) / self.t
+            (self.__expected_rewards[self.candidate_indices[candidate]] * (n - 1) + reward) / n
 
     def __str__(self):
         return 'Greedy Learner'

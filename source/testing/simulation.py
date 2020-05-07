@@ -15,7 +15,7 @@ class Simulation:
         print('\n>> ' + dialog, end='')
         start_time = time()
         for experiment in range(self.experiments):
-            new_dialog = 'running simulations (experiment {} of {})...'.format(experiment, self.experiments)
+            new_dialog = 'running simulations (experiment {} of {})...'.format(experiment+1, self.experiments)
             print('\b'*len(dialog) + new_dialog, end='')
             dialog = new_dialog
             learner = deepcopy(self.learner)

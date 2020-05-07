@@ -62,7 +62,8 @@ def budget_optimizer(bb_matrices, budget_values, pedantic=False):
     base_matrix = np.zeros((n_campaigns, n_budgets))
     t_start = time() if pedantic else 0
     for bb_mat, index in zip(bb_matrices, range(n_campaigns)):
-        base_matrix[index, :] = np.max(bb_mat, axis=1)
+        assert 0 < len(bb_mat.shape) <= 2
+        base_matrix[index, :] = np.max(bb_mat, axis=1) if len(bb_mat.shape) == 2 else bb_mat
     if pedantic:
         print('original matrices:', *bb_matrices, '\nbase matrix:', base_matrix, sep='\n')
 

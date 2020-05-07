@@ -55,6 +55,7 @@ def budget_optimizer(bb_matrices, budget_values, pedantic=False):
     :param budget_values: a vector containing the values for the budgets common to each subcampaign
     :param pedantic: boolean parameter to print the steps of the algorithm, for testing purposes only
     :return: a vector containing the optimal budget allocation for each subcampaign j
+        and the value of the allocation
     """
     n_campaigns = len(bb_matrices)
     n_budgets = bb_matrices[0].shape[0]

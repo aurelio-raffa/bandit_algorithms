@@ -1,5 +1,5 @@
 from source.learners.stationary.gaussian_thompson_sampling.__dependencies import *
-from source.environments.stationary.stationary_conversion_rate import Learner
+from source.learners.stationary.stationary_learner.learner import Learner
 
 
 class GaussianThompsonSamplingLearner(Learner):

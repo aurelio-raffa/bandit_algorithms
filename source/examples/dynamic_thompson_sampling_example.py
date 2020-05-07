@@ -1,7 +1,8 @@
-from source.environments.dynamic.dynamic_conversion_rate import DynamicEnvironment
+from source.examples.__dependencies import *
+from source.environments.dynamic.dynamic_conversion_rate.dynamic_environment import DynamicEnvironment
 from source.learners.stationary.greedy.greedy_learner import GreedyLearner
 from source.learners.stationary.stationary_thompson_sampling.sts_learner import ThompsonSamplingLearner
-from source.learners.dynamic.dynamic_thompson_sampling import SlidingWindowThompsonSamplingLearner
+from source.learners.dynamic.dynamic_thompson_sampling.dts_learner import SlidingWindowThompsonSamplingLearner
 from source.testing.tester import Tester
 
 

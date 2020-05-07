@@ -1,4 +1,4 @@
-from source.learners.stationary.stationary_thompson_sampling.main import main
+from source.examples.stationary_thompson_sampling_example import main
 
 if __name__ == '__main__':
     main()

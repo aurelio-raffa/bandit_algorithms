@@ -1,5 +1,6 @@
+from source.environments.dynamic.random_function.__dependencies import *
 from source.environments.stationary.stationary_conversion_rate.environment import Environment
-from source.environments.dynamic.random_function import RandomFunction
+from source.environments.dynamic.random_function.random_function import RandomFunction
 
 
 class RandomFunctionEnvironment(Environment):

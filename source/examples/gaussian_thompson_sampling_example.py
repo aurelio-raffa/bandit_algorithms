@@ -1,5 +1,5 @@
 from source.learners.stationary.gaussian_thompson_sampling.__dependencies import *
-from source.environments.dynamic.random_function import RandomFunctionEnvironment
+from source.environments.dynamic.random_function.random_function_environment import RandomFunctionEnvironment
 from source.learners.stationary.greedy.greedy_learner import GreedyLearner
 from source.learners.stationary.gaussian_thompson_sampling.gts_learner import GaussianThompsonSamplingLearner
 from source.learners.stationary.gaussian_thompson_sampling.gpts_learner import GaussianProcessThompsonSamplingLearner

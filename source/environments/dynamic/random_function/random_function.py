@@ -1,3 +1,6 @@
+from source.environments.dynamic.random_function.__dependencies import *
+
+
 class RandomFunction:
     def __init__(self, range_x, scale_y, sigma, seed=None):
         if seed is not None:

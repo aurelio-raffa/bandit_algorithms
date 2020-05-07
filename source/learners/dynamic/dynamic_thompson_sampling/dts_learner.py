@@ -1,3 +1,4 @@
+from source.learners.dynamic.dynamic_thompson_sampling.__dependencies import *
 from source.learners.stationary.stationary_thompson_sampling.sts_learner import ThompsonSamplingLearner
 
 

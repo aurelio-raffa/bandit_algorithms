@@ -1,4 +1,5 @@
-from source.environments.dynamic.random_function import RandomFunction
+from source.environments.dynamic.random_function.__dependencies import *
+from source.environments.dynamic.random_function.random_function import RandomFunction
 
 
 def main():

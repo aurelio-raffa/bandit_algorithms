@@ -1,8 +1,9 @@
-from source.environments.dynamic.random_function.__dependencies import *
+from source.environments.stationary.random_function.__dependencies import *
 
 
 class RandomFunction:
     def __init__(self, range_x, scale_y, sigma, seed=None):
+        warnings.warn('RandomFunctions have been deprecated in this version of code', UserWarning)
         if seed is not None:
             np.random.seed(seed)
         parameters = sample(15)
@@ -43,7 +44,7 @@ class RandomFunction:
         y_smp = [self.sample_at(x) for x in x_smp]
         plt.figure(0)
         plt.grid()
-        plt.axes(ylim=(0, 1))
+        plt.axes(ylim=self.scale)
         plt.plot(x_res, y_res)
         plt.plot(x_smp, y_smp)
         plt.show()

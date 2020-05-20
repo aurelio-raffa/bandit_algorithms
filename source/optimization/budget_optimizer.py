@@ -46,13 +46,14 @@ def __moving_window_maximizer(top_slice, temporary_row, temp_row_campaign, budge
     return new_slice
 
 
-def budget_optimizer(bb_matrices, budget_values, pedantic=False):
+def budget_optimizer(bb_matrices, budget_values, log=False, pedantic=False):
     """
     funcion computing the optimal budget allocation given
     :param bb_matrices: a list of budget (rows) vs, bid (columns) matrices, each representing
         the values v_j*n_j for every possible budget y_j and bid x_j of subcampaign j;
         the possible budget values must be shared among all matrices (use -inf to flag banned possibilities)
     :param budget_values: a vector containing the values for the budgets common to each subcampaign
+    :param log: boolean parameter indicating whether to print the result of the optimization
     :param pedantic: boolean parameter to print the steps of the algorithm, for testing purposes only
     :return: a vector containing the optimal budget allocation for each subcampaign j
         and the value of the allocation
@@ -60,7 +61,7 @@ def budget_optimizer(bb_matrices, budget_values, pedantic=False):
     n_campaigns = len(bb_matrices)
     n_budgets = bb_matrices[0].shape[0]
     base_matrix = np.zeros((n_campaigns, n_budgets))
-    t_start = time() if pedantic else 0
+    t_start = time() if log or pedantic else 0
     for bb_mat, index in zip(bb_matrices, range(n_campaigns)):
         assert 0 < len(bb_mat.shape) <= 2
         base_matrix[index, :] = np.max(bb_mat, axis=1) if len(bb_mat.shape) == 2 else bb_mat
@@ -82,7 +83,7 @@ def budget_optimizer(bb_matrices, budget_values, pedantic=False):
     best_allocation_index = np.argmax(computation_matrix[n_campaigns, 0, :])
     best_value = computation_matrix[n_campaigns, 0, best_allocation_index]
     best_allocation = computation_matrix[n_campaigns, 1:n_campaigns+1, best_allocation_index]
-    if pedantic:
+    if log or pedantic:
         t_end = time()
         print(
             '\noptimal configuration:',

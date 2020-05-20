@@ -1,14 +1,14 @@
-from source.environments.dynamic.random_function.__dependencies import *
+from source.environments.stationary.random_function.__dependencies import *
 from source.environments.stationary.stationary_conversion_rate.environment import Environment
-from source.environments.dynamic.random_function.random_function import RandomFunction
+from source.environments.stationary.random_function.random_function import RandomFunction
 
 
 class RandomFunctionEnvironment(Environment):
-    def __init__(self, candidates, sigma, seed=None):
+    def __init__(self, candidates, sigma, y_scale=1, seed=None):
         super().__init__(candidates, candidates, seed)
         self.function = RandomFunction(
             range_x=(np.min(candidates), np.max(candidates)),
-            scale_y=(0, 1),
+            scale_y=(0, y_scale),
             sigma=sigma,
             seed=seed)
 

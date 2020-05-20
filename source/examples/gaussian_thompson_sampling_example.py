@@ -1,8 +1,9 @@
 from source.learners.stationary.gaussian_thompson_sampling.__dependencies import *
-from source.environments.dynamic.random_function.random_function_environment import RandomFunctionEnvironment
+from source.environments.stationary.random_function.random_function_environment import RandomFunctionEnvironment
 from source.learners.stationary.greedy.greedy_learner import GreedyLearner
 from source.learners.stationary.gaussian_thompson_sampling.gts_learner import GaussianThompsonSamplingLearner
 from source.learners.stationary.gaussian_thompson_sampling.gpts_learner import GaussianProcessThompsonSamplingLearner
+from source.learners.dynamic.dynamic_gaussian_processes.gptssw_learner import SlidingWindowGaussianProcessThompsonSamplingLearner
 from source.testing.tester import Tester
 
 
@@ -23,11 +24,17 @@ def main():
         sigma=sigma,
         theta=theta,
         lenscale=lenscale)
+    gw_learner = SlidingWindowGaussianProcessThompsonSamplingLearner(
+        candidates=candidates,
+        window_size=10,
+        sigma=sigma,
+        theta=theta,
+        lenscale=lenscale)
 
     # tester initialization
     tester = Tester(
         environment=environment,
-        learners=(gr_learner, gt_learner, gp_learner),
+        learners=(gr_learner, gt_learner, gw_learner, gp_learner),
         optimal_expected_reward=environment.optimum(),
         exploration_horizon=exploration_horizon,
         experiments=experiments)

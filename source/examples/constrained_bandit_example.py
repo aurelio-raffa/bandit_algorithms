@@ -1,34 +1,66 @@
 from source.optimization.__dependencies import *
 from source.learners.stationary.budget_combinatorial_learner.budget_combinatorial_learner import BudgetCombinatorialLearner
-from source.learners.stationary.stationary_thompson_sampling.sts_learner import ThompsonSamplingLearner
+from source.learners.stationary.gaussian_thompson_sampling.gts_learner import GaussianThompsonSamplingLearner
+from source.learners.stationary.gaussian_thompson_sampling.gpts_learner import GaussianProcessThompsonSamplingLearner
 from source.environments.stationary.stationary_multicampaign_environment.multicampaign_environment import MulticampaignEnvironment
-from source.environments.stationary.stationary_conversion_rate.environment import Environment
+from source.environments.stationary.noisy_function.noisy_function_environment import NoisyFunctionEnvironment
 from source.testing.tester import Tester
 from source.optimization.budget_optimizer import budget_optimizer
 
 
 if __name__ == '__main__':
-    budgets = [0., 1., 2., 3.]
-    subcampaign_learner = ThompsonSamplingLearner(candidates=budgets)
-    n_campaigns = 4
-    learner = BudgetCombinatorialLearner(budgets, subcampaign_learner, n_campaigns)
-    env_c1 = Environment(candidates=budgets, probabilities=[0., .1, .3, .4])
-    env_c2 = Environment(candidates=budgets, probabilities=[0., .3, .2, .7])
-    env_c3 = Environment(candidates=budgets, probabilities=[0., .5, .5, .1])
-    env_c4 = Environment(candidates=budgets, probabilities=[0., .3, .1, .2])
-    environment = MulticampaignEnvironment(subenvironments=[env_c1, env_c2, env_c3, env_c4])
+    # variables
+    budgets = np.linspace(start=0, stop=100, num=20)
+    sigma_true = 5
+    sigma_learner = 10
+    theta_learner = 10
+    lenscale_learner = 10
+    n_campaigns = 3
+    nugget_c1, slope_c1, sill_c1 = 10, 5, 30
+    nugget_c2, slope_c2, sill_c2 = 30, 4, 60
+    nugget_c3, slope_c3, sill_c3 = 20, 7, 90
+    # learners
+    gts_subcampaign_learner = GaussianThompsonSamplingLearner(candidates=budgets, sigma=sigma_learner)
+    gpl_subcampaign_learner = GaussianProcessThompsonSamplingLearner(
+        candidates=budgets,
+        sigma=sigma_learner,
+        theta=theta_learner,
+        lenscale=lenscale_learner)
+    gts_learner = BudgetCombinatorialLearner(budgets, gts_subcampaign_learner, n_campaigns)
+    gpl_learner = BudgetCombinatorialLearner(budgets, gpl_subcampaign_learner, n_campaigns)
+    # environments
+    env_c1 = NoisyFunctionEnvironment(
+        candidates=budgets,
+        nugget=nugget_c1,
+        slope=slope_c1,
+        sill=sill_c1,
+        sigma=sigma_true)
+    env_c2 = NoisyFunctionEnvironment(
+        candidates=budgets,
+        nugget=nugget_c2,
+        slope=slope_c2,
+        sill=sill_c2,
+        sigma=sigma_true)
+    env_c3 = NoisyFunctionEnvironment(
+        candidates=budgets,
+        nugget=nugget_c3,
+        slope=slope_c3,
+        sill=sill_c3,
+        sigma=sigma_true)
+    environment = MulticampaignEnvironment(subenvironments=[env_c1, env_c2, env_c3])
+    # data
     _, optimal_value = budget_optimizer(
         bb_matrices=[
-            np.array([0., .1, .3, .4]).reshape((-1, 1)),
-            np.array([0., .3, .2, .7]).reshape((-1, 1)),
-            np.array([0., .5, .5, .1]).reshape((-1, 1)),
-            np.array([0., .3, .1, .2]).reshape((-1, 1))],
-        budget_values=budgets, pedantic=True)
+            np.array([env_c1.function(x, true_value=True) for x in budgets]).reshape((-1, 1)),
+            np.array([env_c2.function(x, true_value=True) for x in budgets]).reshape((-1, 1)),
+            np.array([env_c3.function(x, true_value=True) for x in budgets]).reshape((-1, 1))],
+        budget_values=budgets, log=True)
+    # testing
     tester = Tester(
         environment=environment,
-        learners=(learner,),
+        learners=(gts_learner, gpl_learner),
         optimal_expected_reward=optimal_value,
-        exploration_horizon=500,
-        experiments=300)
+        exploration_horizon=10,
+        experiments=20)
     tester.run()
     tester.show_results()

@@ -28,10 +28,5 @@ class GaussianProcessThompsonSamplingLearner(GaussianThompsonSamplingLearner):
         self.parameters[:, 0] = means
         self.parameters[:, 1] = stdevs
 
-    def sample_candidates(self):
-        return np.random.normal(
-            self.parameters[:, 0],
-            self.parameters[:, 1])
-
     def __str__(self):
         return 'Gaussian-Process Thompson Sampling Learner'

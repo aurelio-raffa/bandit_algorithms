@@ -3,47 +3,39 @@ from source.context.__dependencies import *
 
 class ContextGeneration:
     def __init__(self):
-        """
-        è una matrice con prima colonna feature1, colonna2=feature2, colonne_arms= prezzi_arms
-        in cui ho 0 se non è un prezzo visto ed uno se è il prezzo che ha visto
-        ultima colonna = comprato si o no. #trasforma in Dataframe
-        """
+        self.model = None
 
-    def context_cluster(self, data, delta, opt_aggregate_arm, n_candidates):
+    @staticmethod
+    def split_margin(data, delta, feature_name, optimal, log=False):
+        num_record = data.shape[0]
+        expected = data.loc[:, [feature_name, 'candidate', 'reward']].groupby(
+            [feature_name, 'candidate']).agg(np.mean)
+        count = data[['userID', feature_name]].groupby(feature_name).count()
+        p1 = float(count.loc[True, :] / num_record)
+        p2 = float(count.loc[False, :] / num_record)
+        h1 = sqrt(- .5 * np.log(delta) / count.loc[True, :])
+        h2 = sqrt(- .5 * np.log(delta) / count.loc[False, :])
+        h0 = sqrt(- .5 * np.log(delta) / num_record)
+        v1 = expected.loc[True, 'reward'].max()
+        v2 = expected.loc[False, 'reward'].max()
+        margin = float((p1 - h1) * (v1 - h1) + (p2 - h2) * (v2 - h2) - (optimal - h0))
+        if log:
+            print('\nassessing split on feature:', feature_name)
+            print('\tlower-bound on baseline optimal reward:', optimal)
+            print('\tlower-bound on class probability (value "True"):', p1 - h1)
+            print('\tlower-bound on class probability (value "False"):', p2 - h2)
+            print('\tlower-bound on expected reward for class (value "True"):', v1 - h1)
+            print('\tlower-bound on expected reward for class (value "False"):', v2 - h2)
+            print('\tmargin:', margin)
+        return margin
 
-        numrecord = data.shape[0]
-        expected_feature1 = data.loc[:, ['feature1', 'candidate', 'reward']].groupby(['feature1', 'candidate']).agg(np.mean)
-        expected_feature2 = data.loc[:, ['feature2', 'candidate', 'reward']].groupby(['feature2', 'candidate']).agg(np.mean)
-        count_feature1 = data.groupby('feature1').count()
-        count_feature2 = data.groupby('feature2').count()
-
-        pc_1 = count_feature1['feature1.0'] / numrecord
-        pc_2 = count_feature1['feature1.1'] / numrecord
-        pc_3 = count_feature1['feature2.0'] / numrecord
-        pc_4 = count_feature1['feature2.1'] / numrecord
-
-        Hoff_tot_pop = mt.sqrt(np.log(delta)/numrecord)
-        Hoff_1 = mt.sqrt(np.log(delta)/count_feature1['feature1.0'])
-        Hoff_2 = mt.sqrt(np.log(delta)/count_feature1['feature1.1'])
-        Hoff_3 = mt.sqrt(np.log(delta)/count_feature1['feature2.0'])
-        Hoff_4 = mt.sqrt(np.log(delta)/count_feature1['feature2.1'])
-
-
-
-
-        #def auxiliary():
-
-        margine_feature1 = (pc_1 - Hoff_1) * (max(expected_feature1.to_numpy()[0:n_candidates]) - Hoff_1) + (pc_2 - Hoff_2) * (max(expected_feature1.to_numpy()[n_candidates:]) - Hoff_2) - opt_aggregate_arm
-
-        margine_feature2 = (pc_3 - Hoff_3) * (max(expected_feature2.to_numpy()[0:n_candidates]) - Hoff_3) + (pc_4 - Hoff_4) * (max(expected_feature2.to_numpy()[n_candidates:]) - Hoff_4) - opt_aggregate_arm
-
-
-        if margine_feature1 > 0 and margine_feature1 > margine_feature2:
-            pass
-
-        if margine_feature2 >0:
-            pass
+    def context_cluster(self, data, delta, features, log=False):
+        optimal = np.max(data.loc[:, ['candidate', 'reward']].groupby('candidate').agg(np.mean))[0]
+        margins = [self.split_margin(data, delta, feature, optimal, log) for feature in features]
+        index = int(np.argmax(margins))
+        value = margins[index]
+        if value > 0:
+            # update self.model !
+            return features[index], value
         else:
-            pass
-
-
+            return None, value

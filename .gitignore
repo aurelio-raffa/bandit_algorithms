@@ -1,2 +1,12 @@
 /.idea
 .DS_Store
+
+.idea/misc.xml
+.idea/modules.xml
+.idea/bandit_algorithms.iml
+.idea/other.xml
+.idea/inspectionProfiles
+.idea/vcs.xml
+.idea/markdown-navigator-enh.xml
+.idea/workspace.xml
+.idea/markdown-navigator.xml

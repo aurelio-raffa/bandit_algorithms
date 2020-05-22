@@ -2,6 +2,8 @@ import copy
 
 import matplotlib.pyplot as plt
 import numpy as np
-import math as mt
 import pandas as pd
+
+from math import sqrt
+from numpy.random import choice, binomial
 

@@ -1,6 +1,5 @@
 /.idea
 .DS_Store
-
 .idea/misc.xml
 .idea/modules.xml
 .idea/bandit_algorithms.iml

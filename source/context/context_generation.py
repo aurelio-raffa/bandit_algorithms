@@ -70,6 +70,7 @@ class ContextGeneration:
             print('[training took {0:.3f} seconds]\n'.format(time()-t_start))
 
     def show_model(self):
+        assert len(self.features) == 2
         print(
             ' ' * (len(self.features[0]) + 5),
             '{}: {}'.format(self.features[1], True),

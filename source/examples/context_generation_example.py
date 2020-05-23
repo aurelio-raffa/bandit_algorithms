@@ -26,42 +26,20 @@ def generate_dataset(
 
 
 if __name__ == '__main__':
-    # data = pd.DataFrame(
-    #     data=[
-    #         [1, True, False, 1, 0],
-    #         [2, True, True, 1, 1],
-    #         [3, False, False, 2, 1],
-    #         [4, False, True, 2, 1],
-    #         [5, True, False, 1, 1],
-    #         [6, False, True, 2, 1],
-    #         [7, True, False, 2, 0],
-    #         [8, True, True, 2, 0],
-    #         [9, False, False, 1, 0],
-    #         [10, False, True, 1, 0],
-    #         [11, True, False, 2, 0],
-    #         [12, False, True, 1, 0]],
-    #     columns=['userID', 'feature1', 'feature2', 'candidate', 'reward'])
     data = generate_dataset(
         class_probabilities=[.25, .25, .25, .25],
         average_rewards=[
             [.6, .2, .2, .2],
             [.2, .6, .2, .2],
             [.2, .2, .6, .2],
-            [.2, .2, .6, .2]],
+            [.2, .2, .2, .6]],
         candidates=[1, 2, 3, 4],
         candidates_probabilities=[.25, .25, .25, .25],
-        size=500)
+        size=1000)
     print(data)
+
     cg = ContextGeneration()
-    cut_feature, margin = cg.context_cluster(
-        data=data,
-        delta=.5,
-        features=['feature1', 'feature2'],
-        log=True)
-    print(cut_feature, margin)
-    second_cut_feature, margin = cg.context_cluster(
-        data=data.loc[data[cut_feature], :],
-        delta=.5,
-        features=['feature2'],
-        log=True)
-    print(second_cut_feature, margin)
+    cg.train(data=data, delta=.5, features=['feature1', 'feature2'], log=True)
+    cg.show_model()
+    data['predicted'] = data.apply(cg.predict, axis=1)
+    print(data)

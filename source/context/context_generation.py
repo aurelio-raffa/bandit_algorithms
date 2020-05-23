@@ -3,6 +3,7 @@ from source.context.__dependencies import *
 
 class ContextGeneration:
     def __init__(self):
+        self.features = None
         self.model = None
 
     @staticmethod
@@ -29,13 +30,56 @@ class ContextGeneration:
             print('\tmargin:', margin)
         return margin
 
-    def context_cluster(self, data, delta, features, log=False):
+    @staticmethod
+    def context_cluster(data, delta, features, log=False):
         optimal = np.max(data.loc[:, ['candidate', 'reward']].groupby('candidate').agg(np.mean))[0]
-        margins = [self.split_margin(data, delta, feature, optimal, log) for feature in features]
+        margins = [ContextGeneration.split_margin(data, delta, feature, optimal, log) for feature in features]
         index = int(np.argmax(margins))
         value = margins[index]
-        if value > 0:
-            # update self.model !
-            return features[index], value
-        else:
-            return None, value
+        return (features[index], value) if value > 0 else (None, value)
+
+    def train(self, data, delta, features, max_splits=2, log=False):
+        t_start = time() if log else 0
+        assert len(features) == 2 and max_splits == 2
+        self.model = {(True, True): 0, (True, False): 0, (False, True): 0, (False, False): 0}
+        self.features = deepcopy(features)
+        feature, margin = self.context_cluster(data, delta, features, log=log)
+        first = (feature == features[0])
+        if feature is not None:
+            if first:
+                self.model[(False, True)] += 1
+                self.model[(False, False)] += 1
+            else:
+                self.model[(True, False)] += 1
+                self.model[(False, False)] += 1
+            sub_feature, sub_margin = None, 0
+            features.remove(feature)
+            current_split = None
+            for level in [True, False]:
+                temp_data = data.loc[data[feature] == level]
+                temp_feature, temp_margin = self.context_cluster(temp_data, delta, features, log=log)
+                if temp_margin > sub_margin:
+                    sub_feature, sub_margin = temp_feature, temp_margin
+                    current_split = level
+            if current_split is not None:
+                if first:
+                    self.model[(current_split, False)] += 2 - self.model[(current_split, False)]
+                else:
+                    self.model[(False, current_split)] += 2 - self.model[(False, current_split)]
+        if log:
+            print('[training took {0:.3f} seconds]\n'.format(time()-t_start))
+
+    def show_model(self):
+        print(
+            ' ' * (len(self.features[0]) + 5),
+            '{}: {}'.format(self.features[1], True),
+            '{}: {}'.format(self.features[1], False), sep='\t')
+        for key1 in (True, False):
+            print(
+                '{}: {}\t'.format(self.features[0], key1),
+                self.model[(key1, True)],
+                ' ' * (len(self.features[1]) + 5),
+                self.model[(key1, False)])
+
+    def predict(self, datum):
+        return self.model[(datum[self.features[0]], datum[self.features[1]])]

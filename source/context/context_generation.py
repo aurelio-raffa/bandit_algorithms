@@ -19,7 +19,7 @@ class ContextGeneration:
         h0 = sqrt(- .5 * np.log(delta) / num_record)
         v1 = expected.loc[True, 'reward'].max()
         v2 = expected.loc[False, 'reward'].max()
-        margin = float((p1 - h1) * (v1 - h1) + (p2 - h2) * (v2 - h2) - (optimal - h0))
+        margin = float((p1 - h0) * (v1 - h1) + (p2 - h0) * (v2 - h2) - (optimal - h0))
         if log:
             print('\nassessing split on feature:', feature_name)
             print('\tlower-bound on baseline optimal reward:', optimal)

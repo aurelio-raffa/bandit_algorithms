@@ -37,10 +37,12 @@ def main():
 
     candidates = [1, 2, 3, 4]
     probabilities = [p1, p2, p3, p4]
-    optimal_expected_reward = 1
-    horizon = 2000
-    window = 50
-    experiments = 100
+    horizon = 3000
+    optimal_expected_reward = np.array([
+        max([probability(t) for probability in probabilities])
+        for t in range(horizon)])
+    window = 100
+    experiments = 50
     environment = DynamicEnvironment(candidates=candidates, probabilities=probabilities, horizon=horizon)
     gr_learner = GreedyLearner(candidates=candidates)
     ts_learner = ThompsonSamplingLearner(candidates=candidates)

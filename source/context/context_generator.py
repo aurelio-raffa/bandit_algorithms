@@ -1,7 +1,7 @@
 from source.context.__dependencies import *
 
 
-class ContextGeneration:
+class ContextGenerator:
     def __init__(self):
         self.features = None
         self.model = None
@@ -33,16 +33,20 @@ class ContextGeneration:
     @staticmethod
     def context_cluster(data, delta, features, log=False):
         optimal = np.max(data.loc[:, ['candidate', 'reward']].groupby('candidate').agg(np.mean))[0]
-        margins = [ContextGeneration.split_margin(data, delta, feature, optimal, log) for feature in features]
+        margins = [ContextGenerator.split_margin(data, delta, feature, optimal, log) for feature in features]
         index = int(np.argmax(margins))
         value = margins[index]
         return (features[index], value) if value > 0 else (None, value)
 
-    def train(self, data, delta, features, max_splits=2, log=False):
-        t_start = time() if log else 0
-        assert len(features) == 2 and max_splits == 2
+    def initialize_two_features(self, features):
+        assert len(features) == 2
         self.model = {(True, True): 0, (True, False): 0, (False, True): 0, (False, False): 0}
         self.features = deepcopy(features)
+
+    def train(self, data, delta, features, max_splits=2, log=False):
+        t_start = time() if log else 0
+        self.initialize_two_features(features)
+        assert max_splits == 2
         feature, margin = self.context_cluster(data, delta, features, log=log)
         first = (feature == features[0])
         if feature is not None:
@@ -83,4 +87,8 @@ class ContextGeneration:
                 self.model[(key1, False)])
 
     def predict(self, datum):
+        assert len(self.features) == 2
         return self.model[(datum[self.features[0]], datum[self.features[1]])]
+
+    def number_of_classes(self):
+        return len(np.unique(list(self.model.values())))

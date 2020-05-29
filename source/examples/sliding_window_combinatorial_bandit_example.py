@@ -16,9 +16,10 @@ if __name__ == '__main__':
     theta_learner = 10
     lenscale_learner = 10
     n_campaigns = 3
-    exploration_horizon = 20
-    learner_window_size = 5
-    abrupt_changes = [9, 15]
+    exploration_horizon = 250
+    experiments = 100
+    learner_window_size = 30
+    abrupt_changes = [50, 150]
     nuggets = np.array([
         [10, 30, 20],
         [5, 15, 10],
@@ -78,6 +79,6 @@ if __name__ == '__main__':
         learners=(gts_learner, gpl_learner, swl_learner),
         optimal_expected_reward=optimal_values,
         exploration_horizon=exploration_horizon,
-        experiments=20)
+        experiments=experiments)
     tester.run()
     tester.show_results()

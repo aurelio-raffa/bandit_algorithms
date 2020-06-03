@@ -10,17 +10,14 @@ class BudgetCombinatorialLearner(BaseLearner):
         :param budgets: the values of budgets, common among every subcampaign
         :param subcampaign_learner: the learner object for each subcampaign
         :param n_campaigns: the number of subcampaigns
-        :param values: a list values per click for every possible bid and budget
-            (in form of a matrix) corresponding to each subcampaign, or a single scalar
+        :param values: a list values per click for every subcampaign, or a single scalar
             if all wights are equal (defaults to 1.)
         """
         super().__init__()
         self.budgets = budgets
         self.learners = [deepcopy(subcampaign_learner) for _ in range(n_campaigns)]
         self.n_campaigns = n_campaigns
-        self.values = values \
-            if type(values) not in (int, float) \
-            else [np.ones(shape=(len(budgets),)) * values for _ in range(n_campaigns)]
+        self.values = values if type(values) not in (int, float) else [values] * n_campaigns
 
     def select_arm(self):
         bb_matrices = [learner.sample_candidates() * values for learner, values in zip(self.learners, self.values)]
@@ -28,7 +25,7 @@ class BudgetCombinatorialLearner(BaseLearner):
         return optimal_allocation
 
     def update(self, candidate, reward):
-        super().update(candidate, np.sum(reward))
+        super().update(candidate, np.sum([rwd * val for rwd, val in zip(reward, self.values)]))
         for idx, cndt, rwd in zip(range(self.n_campaigns), candidate, reward):
             self.learners[idx].update(cndt, rwd)
 

@@ -9,3 +9,6 @@ class AverageRewardThompsonSamplingLearner(ThompsonSamplingLearner):
     def select_arm(self):
         index = np.argmax(self.sample_candidates() * np.array(self.candidates))
         return self.candidates[index]
+
+    def __str__(self):
+        return 'Average-Reward Thompson Sampling Learner'

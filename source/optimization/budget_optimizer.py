@@ -86,10 +86,10 @@ def budget_optimizer(bb_matrices, budget_values, log=False, pedantic=False):
     if log or pedantic:
         t_end = time()
         print(
-            '\noptimal configuration:',
-            best_allocation,
-            'value of the configuration: {}'.format(best_value),
-            '\n[optimization problem solved in {0:.3f} seconds]'.format(t_end-t_start),
+            '\noptimal configuration:\n',
+            *['\tcampaign {}:\t{}'.format(index, value) for index, value in zip(range(len(best_allocation)), best_allocation)],
+            '\nvalue of the configuration: {0} [optimization problem solved in {1:.3f} seconds]'.format(
+                best_value, t_end-t_start),
             sep='\n')
 
     return best_allocation, best_value

@@ -15,6 +15,7 @@ class Simulation:
         selected = learner.select_arm()
         reward = environment.simulate_round(candidate=selected)
         learner.update(candidate=selected, reward=reward)
+        return reward * selected
 
     def run_subcycle(self, learner, environment):
         for iteration in range(self.exploration_horizon):
@@ -25,7 +26,7 @@ class Simulation:
         def to_string(number, quantity):
             return ' {} {}{}'.format(number, quantity, 's' if number > 1 else '') if number else ''
 
-        int_time = int(time_in_seconds)
+        int_time = int(np.ceil(time_in_seconds))
         seconds = int_time % 60
         minutes = int((int_time - seconds)/60) % 60
         hours = int(((int_time - seconds)/60 - minutes)/60) % 24
@@ -34,7 +35,7 @@ class Simulation:
             to_string(days, 'day'),
             to_string(hours, 'hour'),
             to_string(minutes, 'minute'),
-            to_string(seconds, 'second'))
+            to_string(seconds, 'second'))[1:]
 
     def run(self):
         dialog = 'running simulations...'
@@ -64,7 +65,7 @@ class Simulation:
                 if average_iteration_time is None \
                 else (average_iteration_time * experiment + local_time)/(experiment + 1)
         end_time = time()
-        print('{0}simulations comlpleted in {1:.2f} seconds'.format(
+        print('{}simulations comlpleted in {} seconds'.format(
             '\b'*len(dialog),
-            end_time-start_time))
+            self.time_for_humans(end_time-start_time)))
 

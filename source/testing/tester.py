@@ -5,12 +5,13 @@ from source.testing.simulation import Simulation
 class Tester:
     def __init__(
             self,
-            environment,
-            learners,
-            optimal_expected_reward,
-            exploration_horizon,
+            environment=None,
+            learners=None,
+            optimal_expected_reward=1.,
+            exploration_horizon=0,
             experiments=1,
             simulations=None):
+        assert (environment is not None and learners is not None) or simulations is not None
         self.simulations = []
         self.optimal_expected_reward = optimal_expected_reward
         if simulations is None:
@@ -23,7 +24,6 @@ class Tester:
                         experiments=experiments))
         else:
             self.simulations = simulations
-            assert len(learners) == len(simulations)
 
     def run(self):
         for simulation in self.simulations:

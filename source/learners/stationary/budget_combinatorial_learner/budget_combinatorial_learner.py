@@ -25,7 +25,8 @@ class BudgetCombinatorialLearner(BaseLearner):
         return optimal_allocation
 
     def update(self, candidate, reward):
-        super().update(candidate, np.sum([rwd * val for rwd, val in zip(reward, self.values)]))
+        total_reward = np.sum([rwd * val for rwd, val in zip(reward, self.values)])
+        super().update(candidate, total_reward)
         for idx, cndt, rwd in zip(range(self.n_campaigns), candidate, reward):
             self.learners[idx].update(cndt, rwd)
 

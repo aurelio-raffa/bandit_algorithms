@@ -12,8 +12,11 @@ class ContextBasedSimulation(Simulation):
         learner.select_class(user_features)
         Simulation.run_subroutine(learner, environment)
 
-    def run_subcycle(self, learner, environment):
+    def run_subcycle(self, learner, environment, experiment=None):
+        if experiment is not None:
+            self.reseed(experiment)
         for iteration in range(self.exploration_horizon):
             if iteration >= self.context_generation_period and iteration % self.context_generation_period == 0:
                 learner.generate_context(environment.get_data())
             self.run_subroutine(learner, environment)
+        return learner

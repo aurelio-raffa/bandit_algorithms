@@ -25,26 +25,28 @@ class Tester:
         else:
             self.simulations = simulations
 
-    def run(self):
+    def run(self, multiprocess=False, seed=None):
+        if seed is not None:
+            np.random.seed(seed)
         for simulation in self.simulations:
-            simulation.run()
+            simulation.run(multiprocess=multiprocess, seed=seed)
 
     def show_results(self, k=1):
         def shift_mean(x):
             return np.lib.stride_tricks.as_strided(x, (k, len(x) - k + 1), (x.itemsize, x.itemsize)).mean(axis=0)
 
-        def plot_vector(vec, exploration_horizon):
+        def plot_mean(mat, exploration_horizon):
             plt.plot(
                 range(exploration_horizon - k + 1),
-                shift_mean(np.mean(vec, axis=0)))
+                shift_mean(np.mean(mat, axis=0)))
             plt.fill_between(
                 range(exploration_horizon - k + 1),
                 shift_mean(
-                    np.mean(vec, axis=0) -
-                    np.std(vec, axis=0)),
+                    np.mean(mat, axis=0) -
+                    np.std(mat, axis=0)),
                 shift_mean(
-                    np.mean(vec, axis=0) +
-                    np.std(vec, axis=0)),
+                    np.mean(mat, axis=0) +
+                    np.std(mat, axis=0)),
                 interpolate=True, alpha=0.25)
 
         y_labels = [
@@ -58,10 +60,12 @@ class Tester:
             plt.ylabel(y_labels[index])
             if index == 0:
                 for simulation in self.simulations:
-                    plot_vector(simulation.collected_rewards, simulation.exploration_horizon)
+                    plot_mean(
+                        simulation.collected_rewards,
+                        simulation.exploration_horizon)
             elif index == 1:
                 for simulation in self.simulations:
-                    plot_vector(
+                    plot_mean(
                         self.optimal_expected_reward - simulation.collected_rewards,
                         simulation.exploration_horizon)
             else:

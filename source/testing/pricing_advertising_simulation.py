@@ -21,7 +21,9 @@ class PricingAdvertisingSimulation(Simulation):
         self.secondary_learners = pricing_learners
         self.subcampaign_costs = subcampaign_costs
 
-    def run_subcycle(self, learner, environment):
+    def run_subcycle(self, learner, environment, experiment=None):
+        if experiment is not None:
+            self.reseed(experiment)
         subcampaign_environments = deepcopy(self.secondary_environments)
         pricing_learners = deepcopy(self.secondary_learners)
         n_subcampaigns = len(subcampaign_environments)
@@ -44,3 +46,4 @@ class PricingAdvertisingSimulation(Simulation):
                     aux_values[index] += (reward - cost) / iterations
             learner.values = aux_values
             learner.update(allocation, clicks)
+        return learner

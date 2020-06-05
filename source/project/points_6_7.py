@@ -41,7 +41,7 @@ if __name__ == '__main__':
     sigma_learner = 10
     theta_learner = 10
     lenscale_learner = 10
-    exploration_horizon = 120       # 200
+    exploration_horizon = 150       # 200
     experiments = 10                # 25
 
     # pricing learners - point 6
@@ -116,5 +116,5 @@ if __name__ == '__main__':
         simulations=(simulation_p6, simulation_p7))
 
     # run
-    tester.run()
+    tester.run(multiprocess=True)
     tester.show_results()

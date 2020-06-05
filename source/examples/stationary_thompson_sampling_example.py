@@ -1,3 +1,4 @@
+from source.examples.__dependencies import *
 from source.environments.stationary.stationary_conversion_rate.environment import Environment
 from source.learners.stationary.stationary_thompson_sampling.sts_learner import ThompsonSamplingLearner
 from source.learners.stationary.greedy.greedy_learner import GreedyLearner
@@ -10,7 +11,7 @@ def main():
     candidates = [1, 2, 3, 4]
     probabilities = [.5, .1, .1, .35]
     exploration_horizon = 300
-    experiments = 500
+    experiments = 300
     environment = Environment(candidates=candidates, probabilities=probabilities)
     gr_learner = GreedyLearner(candidates=candidates)
     ts_learner = ThompsonSamplingLearner(candidates=candidates)
@@ -24,7 +25,13 @@ def main():
         experiments=experiments)
 
     # running tests
-    tester.run()
+    # np.random.seed(1234)
+    # tester.run()
+    # tester.show_results()
+
+    # running tests (multiprocessing) - 50% gain in time
+    np.random.seed(1234)
+    tester.run(multiprocess=True)
     tester.show_results()
 
 

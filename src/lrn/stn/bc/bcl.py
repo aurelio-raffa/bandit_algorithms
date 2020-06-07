@@ -1,6 +1,6 @@
 from src.lrn.stn.bc.__dep import *
 from src.bse.bse_lrn import BaseLearner
-from src.optimization.budget_optimizer import budget_optimizer
+from src.opt.bop import budget_optimizer
 
 
 class BudgetLearner(BaseLearner):

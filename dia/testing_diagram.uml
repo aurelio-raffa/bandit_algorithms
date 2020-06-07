@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#/Users/aurelioraffaugolini/Documents/programming/bandit_algorithms/src/tsg</OriginalElement>
+  <nodes>
+    <node x="292.5911560058594" y="383.7870178222656">src.tsg.pas.PASimulation</node>
+    <node x="290.75" y="0.0">src.tsg.sim.Simulation</node>
+    <node x="292.5911560058594" y="572.7870178222656">src.tsg.tsr.Tester</node>
+    <node x="826.5911560058594" y="394.7870178222656">src.tsg.cxs.ContextSimulation</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="src.tsg.pas.PASimulation" target="src.tsg.sim.Simulation">
+      <point x="0.0" y="-72.0" />
+      <point x="549.5911560058594" y="358.7870178222656" />
+      <point x="688.0911560058594" y="358.7870178222656" />
+      <point x="-104.75" y="160.0" />
+    </edge>
+    <edge source="src.tsg.cxs.ContextSimulation" target="src.tsg.sim.Simulation">
+      <point x="0.0" y="-61.0" />
+      <point x="1036.0911560058594" y="358.7870178222656" />
+      <point x="897.5911560058594" y="358.7870178222656" />
+      <point x="104.75" y="160.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.652788015220033" x="385.6878662109375" y="360.04270935058594" />
+  <SelectedNodes>
+    <node>src.tsg.pas.PASimulation</node>
+    <node>src.tsg.tsr.Tester</node>
+    <node>src.tsg.cxs.ContextSimulation</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+</Diagram>
+

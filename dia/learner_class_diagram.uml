@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#/Users/aurelioraffaugolini/Documents/programming/bandit_algorithms/src/lrn</OriginalElement>
+  <nodes>
+    <node x="957.9491298527444" y="558.7844712182061">src.lrn.dyn.ts.swt.SWTSLearner</node>
+    <node x="133.50000000000006" y="586.0">src.lrn.stn.gau.gts.GTSLearner</node>
+    <node x="352.50000000000006" y="260.0">src.lrn.stn.sln.lrn.Learner</node>
+    <node x="0.0" y="1062.0">src.lrn.dyn.gau.gps.SWGPTSLearner</node>
+    <node x="555.0" y="586.0">src.lrn.stn.ts.sts.TSLearner</node>
+    <node x="647.5" y="249.0">src.lrn.stn.bc.bcl.BudgetLearner</node>
+    <node x="1141.5" y="172.0">src.lrn.stn.tfc.tfl.TFCLearner</node>
+    <node x="43.0" y="802.0">src.lrn.stn.gau.gps.GPTSLearner</node>
+    <node x="747.75" y="0.0">src.bse.bse_lrn.BaseLearner</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="src.lrn.dyn.gau.gps.SWGPTSLearner" target="src.lrn.stn.gau.gps.GPTSLearner">
+      <point x="0.0" y="-72.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="src.lrn.stn.gau.gts.GTSLearner" target="src.lrn.stn.sln.lrn.Learner">
+      <point x="0.0" y="-83.0" />
+      <point x="284.50000000000006" y="561.0" />
+      <point x="421.25000000000006" y="561.0" />
+      <point x="-68.75" y="94.0" />
+    </edge>
+    <edge source="src.lrn.stn.ts.sts.TSLearner" target="src.lrn.stn.sln.lrn.Learner">
+      <point x="0.0" y="-83.0" />
+      <point x="697.0" y="561.0" />
+      <point x="558.75" y="561.0" />
+      <point x="68.75" y="94.0" />
+    </edge>
+    <edge source="src.lrn.stn.sln.lrn.Learner" target="src.bse.bse_lrn.BaseLearner">
+      <point x="0.0" y="-94.0" />
+      <point x="490.00000000000006" y="147.0" />
+      <point x="793.5833333333335" y="147.0" />
+      <point x="-91.66666666666663" y="61.0" />
+    </edge>
+    <edge source="src.lrn.stn.gau.gps.GPTSLearner" target="src.lrn.stn.gau.gts.GTSLearner">
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="src.lrn.stn.bc.bcl.BudgetLearner" target="src.bse.bse_lrn.BaseLearner">
+      <point x="0.0" y="-105.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="src.lrn.dyn.ts.swt.SWTSLearner" target="src.lrn.stn.ts.sts.TSLearner">
+      <point x="0.0" y="-61.0" />
+      <point x="0.0" y="83.0" />
+    </edge>
+    <edge source="src.lrn.stn.tfc.tfl.TFCLearner" target="src.bse.bse_lrn.BaseLearner">
+      <point x="0.0" y="-182.0" />
+      <point x="1292.5" y="147.0" />
+      <point x="976.9166666666667" y="147.0" />
+      <point x="91.66666666666674" y="61.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6092985318107668" x="718.5" y="603.0" />
+  <SelectedNodes>
+    <node>src.lrn.dyn.ts.swt.SWTSLearner</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+</Diagram>
+

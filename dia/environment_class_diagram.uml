@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#/Users/aurelioraffaugolini/Documents/programming/bandit_algorithms/src/env</OriginalElement>
+  <nodes>
+    <node x="0.0" y="431.0">src.env.stn.nf.nfe.NFEnvironment</node>
+    <node x="866.5" y="127.0">src.env.stn.cbe.cb.ContextEnvironment</node>
+    <node x="41.0" y="182.0">src.env.stn.cr.env.Environment</node>
+    <node x="491.5" y="193.0">src.env.stn.mc.mce.MCEnvironment</node>
+    <node x="496.0" y="0.0">src.bse.bse_env.BaseEnvironment</node>
+    <node x="459.0" y="486.5">src.env.stn.mc.mnf.MCNFEnvironment</node>
+    <node x="864.0" y="453.0">src.env.stn.cbe.tfc.TFCEnvironment</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="src.env.stn.mc.mce.MCEnvironment" target="src.bse.bse_env.BaseEnvironment">
+      <point x="0.0" y="-61.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="src.env.stn.nf.nfe.NFEnvironment" target="src.env.stn.cr.env.Environment">
+      <point x="0.0" y="-83.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="src.env.stn.mc.mnf.MCNFEnvironment" target="src.env.stn.mc.mce.MCEnvironment">
+      <point x="0.0" y="-27.5" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="src.env.stn.cbe.cb.ContextEnvironment" target="src.bse.bse_env.BaseEnvironment">
+      <point x="0.0" y="-127.0" />
+      <point x="1094.0" y="102.0" />
+      <point x="755.1666666666667" y="102.0" />
+      <point x="103.66666666666674" y="38.5" />
+    </edge>
+    <edge source="src.env.stn.cbe.tfc.TFCEnvironment" target="src.env.stn.cbe.cb.ContextEnvironment">
+      <point x="0.0" y="-61.0" />
+      <point x="0.0" y="127.0" />
+    </edge>
+    <edge source="src.env.stn.cr.env.Environment" target="src.bse.bse_env.BaseEnvironment">
+      <point x="0.0" y="-72.0" />
+      <point x="219.5" y="102.0" />
+      <point x="547.8333333333334" y="102.0" />
+      <point x="-103.66666666666663" y="38.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4736601007787448" x="1071.5" y="671.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+</Diagram>
+

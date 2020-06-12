@@ -10,10 +10,10 @@ from src.tsg.tsr import Tester
 from src.opt.bop import budget_optimizer
 
 
-if __name__ == '__main__':
+def ps6_7():
     # problem parameters
-    subcampaign_costs = [10, 20, 5]
-    pricing_candidates = [50, 60, 70, 80, 90]
+    subcampaign_costs = [.25, .55, .35]                       # [10, 20, 5]
+    pricing_candidates = [.99, 1.79, 2.99, 3.49, 4.99]        # [50, 60, 70, 80, 90]
     probabilities = [
         [.1, .2, .5, .75, .1],      # campaign 1
         [.2, .9, .55, .2, .4],      # campaign 2
@@ -42,12 +42,11 @@ if __name__ == '__main__':
     experiments = 10                # 25
 
     # pricing learners - point 6
-    pricing_learners_p6 = [
-        AverageRewardTSL(pricing_candidates) for _ in range(len(subcampaign_costs))]
+    pricing_learners_p6 = [AverageRewardTSL(pricing_candidates) for _ in range(len(subcampaign_costs))]
 
     # pricing learners - point 7
-    sub_learn = AverageRewardTSL(pricing_candidates)
-    pricing_learners_p7 = [sub_learn] * len(subcampaign_costs)
+    pricing_learner_p7 = AverageRewardTSL(pricing_candidates)
+    pricing_learners_p7b = [pricing_learner_p7] * len(subcampaign_costs)
 
     # advertising learner
     advertising_learner = BudgetLearner(
@@ -73,7 +72,15 @@ if __name__ == '__main__':
     simulation_p7 = PASimulation(
         sub_envs=subcampaign_environments,
         ad_env=advertising_environment,
-        pr_lrns=pricing_learners_p7,
+        pr_lrns=pricing_learner_p7,
+        ad_lrn=advertising_learner,
+        sbcmp_costs=subcampaign_costs,
+        horizon=exploration_horizon,
+        exps=experiments)
+    simulation_p7b = PASimulation(
+        sub_envs=subcampaign_environments,
+        ad_env=advertising_environment,
+        pr_lrns=pricing_learners_p7b,
         ad_lrn=advertising_learner,
         sbcmp_costs=subcampaign_costs,
         horizon=exploration_horizon,
@@ -96,7 +103,7 @@ if __name__ == '__main__':
             in zip(range(len(optimal_prices)), optimal_prices)], sep='\n')
     print(
         '\nsubcampaign values:\n', *[
-            '\tcampaign {}:\t{}'.format(index, value)
+            '\tcampaign {0}:\t{1:.3f}'.format(index, value)
             for index, value
             in zip(range(len(subcampaign_values)), subcampaign_values)], sep='\n')
     _, optimal_value = budget_optimizer(
@@ -110,8 +117,12 @@ if __name__ == '__main__':
     tester = Tester(
         oer=optimal_value,
         horizon=exploration_horizon,
-        sims=(simulation_p6, simulation_p7))
+        sims=(simulation_p6, simulation_p7, simulation_p7b))
 
     # run
-    tester.run(multiprocess=True)
+    tester.run()
     tester.show_results()
+
+
+if __name__ == '__main__':
+    ps6_7()

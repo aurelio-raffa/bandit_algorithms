@@ -19,10 +19,13 @@ class BudgetLearner(BaseLearner):
         self.n_campaigns = n_campaigns
         self.values = values if type(values) not in (int, float) else [values] * n_campaigns
 
-    def select_arm(self):
+    def select_arm(self, get_value=False):
         bb_matrices = [learner.sample_candidates() * values for learner, values in zip(self.learners, self.values)]
-        optimal_allocation, _ = budget_optimizer(bb_matrices, self.budgets)
-        return optimal_allocation
+        optimal_allocation, optimal_value = budget_optimizer(bb_matrices, self.budgets)
+        if get_value:
+            return optimal_allocation, optimal_value
+        else:
+            return optimal_allocation
 
     def update(self, candidate, reward):
         total_reward = np.sum([rwd * val for rwd, val in zip(reward, self.values)])

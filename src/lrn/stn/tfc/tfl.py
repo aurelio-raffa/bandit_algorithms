@@ -31,13 +31,7 @@ class TFCLearner(BaseLearner):
         for key, val in self.context_generator.model.items():
             temp_list[val].add(key)
         temp_list = [frozenset(el) for el in temp_list]
-        original_keys = list(self.learners_by_class.keys())
-        for fset in original_keys:
-            if fset not in temp_list:
-                del self.learners_by_class[fset]
-        for key in temp_list:
-            if key not in self.learners_by_class.keys():
-                self.learners_by_class[key] = AverageRewardTSL(self.candidates)
+        self.learners_by_class = {key: AverageRewardTSL(self.candidates) for key in temp_list}
 
     def select_class(self, current_features):
         self.current_features = current_features

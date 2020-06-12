@@ -25,7 +25,8 @@ class Simulation:
             self.seed * self.seed * number % 4294967295 \
             if self.seed is not None else \
             number * number * number * number % 4294967295
-        np.random.seed(self.seed)
+        gen = np.random.default_rng(self.seed)
+        np.random._generator = gen
 
     def run_subcycle(self, learner, environment, experiment=None):
         if experiment is not None:

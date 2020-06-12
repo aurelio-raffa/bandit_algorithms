@@ -19,6 +19,8 @@ class Tester:
             self.simulations = sims
 
     def run(self, multiprocess=False, seed=None):
+        if multiprocess:
+            warnings.warn('this feature is currently in its testing phase!', RuntimeWarning)
         if seed is not None:
             np.random.seed(seed)
         for simulation in self.simulations:

@@ -1,3 +1,4 @@
+from src.tsg.__dep import *
 from src.tsg.sim import Simulation
 
 

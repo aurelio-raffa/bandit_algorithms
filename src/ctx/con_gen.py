@@ -7,8 +7,12 @@ class ContextGenerator:
         self.model = None
 
     @staticmethod
-    def split_margin(data, delta, feature_name, optimal, log=False):
+    def split_margin(data, delta, feature_name, log=False):
         num_record = data.shape[0]
+        current = data.loc[:, ['candidate', 'reward']].groupby(['candidate']).agg(np.mean)
+        current['total'] = current['reward'] * current.index
+        i0 = current['total'].argmax()
+        v0, c0 = current.iloc[i0]['reward'], current.index[i0]
         expected = data.loc[:, [feature_name, 'candidate', 'reward']].groupby(
             [feature_name, 'candidate']).agg(np.mean)
         count = data[['userID', feature_name]].groupby(feature_name).count()
@@ -17,23 +21,20 @@ class ContextGenerator:
         h1 = sqrt(- .5 * np.log(delta) / count.loc[True, :])
         h2 = sqrt(- .5 * np.log(delta) / count.loc[False, :])
         h0 = sqrt(- .5 * np.log(delta) / num_record)
-        v1 = expected.loc[True, 'reward'].max()
-        v2 = expected.loc[False, 'reward'].max()
-        margin = float((p1 - h0) * (v1 - h1) + (p2 - h0) * (v2 - h2) - (optimal - h0))
+        expected['total'] = expected['reward'] * np.array([tp[1] for tp in expected.index])
+        i1 = expected.loc[True, 'total'].argmax()
+        v1, c1 = expected.loc[True, 'reward'].iloc[i1], expected.loc[True].index[i1]
+        i2 = expected.loc[False, 'total'].argmax()
+        v2, c2 = expected.loc[False, 'reward'].iloc[i2], expected.loc[False].index[i2]
+        margin = float((p1 - h0) * (v1 - h1) * c1 + (p2 - h0) * (v2 - h2) * c2 - (v0 - h0) * c0)
         if log:
             print('\nassessing split on feature:', feature_name)
-            print('\tlower-bound on baseline optimal reward:', optimal)
-            print('\tlower-bound on class probability (value "True"):', p1 - h1)
-            print('\tlower-bound on class probability (value "False"):', p2 - h2)
-            print('\tlower-bound on expected reward for class (value "True"):', v1 - h1)
-            print('\tlower-bound on expected reward for class (value "False"):', v2 - h2)
             print('\tmargin:', margin)
         return margin
 
     @staticmethod
     def context_cluster(data, delta, features, log=False):
-        optimal = np.max(data.loc[:, ['candidate', 'reward']].groupby('candidate').agg(np.mean))[0]
-        margins = [ContextGenerator.split_margin(data, delta, feature, optimal, log) for feature in features]
+        margins = [ContextGenerator.split_margin(data, delta, feature, log) for feature in features]
         index = int(np.argmax(margins))
         value = margins[index]
         return (features[index], value) if value > 0 else (None, value)

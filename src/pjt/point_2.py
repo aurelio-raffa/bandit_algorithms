@@ -2,6 +2,7 @@ from src.pjt.__dep import *
 from src.env.stn.mc.mnf import MCNFEnvironment
 from src.lrn.stn.bc.bcl import BudgetLearner
 from src.lrn.stn.gau.gps import GPTSLearner
+from src.lrn.stn.gau.gts import GTSLearner
 from src.lrn.dyn.gau.gps import SWGPTSLearner
 from src.env.stn.mc.mnf import MCNFEnvironment
 from src.env.stn.nf.nf import NoisyFunction
@@ -10,7 +11,7 @@ from src.tsg.tsr import Tester
 from src.opt.bop import budget_optimizer
 
 
-if __name__ == '__main__':
+def p2():
     # problem parameters
     budgets = np.linspace(start=0, stop=100, num=5)
     n_campaigns = 3
@@ -33,8 +34,8 @@ if __name__ == '__main__':
     sigma_learner = 10
     theta_learner = 10
     lenscale_learner = 10
-    exploration_horizon = 75
-    experiments = 25
+    exploration_horizon = 100
+    experiments = 50
 
     # learners
     gp_subcampaign_learner = GPTSLearner(
@@ -42,7 +43,9 @@ if __name__ == '__main__':
         sigma=sigma_learner,
         theta=theta_learner,
         lenscale=lenscale_learner)
+    gt_subcampaign_learner = GTSLearner(candidates=budgets, sigma=sigma_learner)
     gp_learner = BudgetLearner(budgets, gp_subcampaign_learner, n_campaigns)
+    gt_learner = BudgetLearner(budgets, gt_subcampaign_learner, n_campaigns)
 
     # data
     _, optimal_value = budget_optimizer(
@@ -54,13 +57,15 @@ if __name__ == '__main__':
     # testing
     tester = Tester(
         env=environment,
-        lrns=(gp_learner,),
+        lrns=(gp_learner, gt_learner),
         oer=optimal_value,
         horizon=exploration_horizon,
         exps=experiments)
-    tester.run(multiprocess=True)
+    tester.run()
     tester.show_results()
 
 
+if __name__ == '__main__':
+    p2()
 
 

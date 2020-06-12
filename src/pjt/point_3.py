@@ -10,7 +10,7 @@ from src.tsg.tsr import Tester
 from src.opt.bop import budget_optimizer
 
 
-if __name__ == '__main__':
+def p3():
     # problem parameters
     budgets = np.linspace(start=0, stop=100, num=5)
     n_campaigns = 3
@@ -44,8 +44,8 @@ if __name__ == '__main__':
     sigma_learner = 10
     theta_learner = 10
     lenscale_learner = 10
-    exploration_horizon = 100
-    experiments = 10
+    exploration_horizon = 150
+    experiments = 25
     learner_window_size = 30
 
     # learners
@@ -88,9 +88,11 @@ if __name__ == '__main__':
         oer=optimal_values,
         horizon=exploration_horizon,
         exps=experiments)
-    tester.run(multiprocess=True)
+    tester.run()
     tester.show_results()
 
 
+if __name__ == '__main__':
+    p3()
 
 

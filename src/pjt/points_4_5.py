@@ -70,8 +70,8 @@ def ps4_5():
         exps=experiments_p4)
 
     # execution and results - point 4
-    # tester_p4.run()
-    # tester_p4.show_results(k=30)
+    tester_p4.run()
+    tester_p4.show_results(k=30)
 
     # simulators and testers
     simulator_p5 = ContextSimulation(

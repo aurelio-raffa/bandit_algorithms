@@ -32,12 +32,13 @@ class PASimulation(Simulation):
             else:
                 allocation = None
                 best_objective = -np.inf
+                glob_values = [
+                    pricing_learners.beta_parameters[:, 0]
+                    / np.sum(pricing_learners.beta_parameters, axis=1)
+                    * np.array(pricing_learners.candidates) - cost
+                    for cost in self.subcampaign_costs]
                 for it in range(len(pricing_learners.candidates)):
-                    curr_values = [
-                        pricing_learners.beta_parameters[:, 0]
-                        / np.sum(pricing_learners.beta_parameters, axis=1)
-                        * np.array(pricing_learners.candidates) - cost
-                        for cost in self.subcampaign_costs]
+                    curr_values = [g_val[it] for g_val in glob_values]
                     learner.values = curr_values
                     curr_allocation, curr_objective = learner.select_arm(get_value=True)
                     if curr_objective > best_objective:

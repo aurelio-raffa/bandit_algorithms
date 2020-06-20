@@ -48,10 +48,11 @@ def ps4_5():
 
     # simulation parameters - point 4
     np.random.seed(830298)
-    exploration_horizon = 12000
-    experiments_p4 = 100
+    exploration_horizon_p4 = 1000
+    experiments_p4 = 1200
 
     # simulation parameters - point 5
+    exploration_horizon_p5 = 12000
     experiments_p5 = 25           # 50
     delta = .1
     context_generation_period = 250
@@ -61,31 +62,30 @@ def ps4_5():
     learner_p5 = TFCLearner(candidates, features, delta)
 
     # simulator - point 4
-    simulator_p4 = Simulation(environment, learner_p4, exploration_horizon, experiments_p4)
     tester_p4 = Tester(
         environment,
         lrns=(learner_p4,),
         oer=optimal_expected_reward_p4,
-        horizon=exploration_horizon,
+        horizon=exploration_horizon_p4,
         exps=experiments_p4)
 
     # execution and results - point 4
     tester_p4.run()
-    tester_p4.show_results(k=30)
+    tester_p4.show_results(k=50)
 
     # simulators and testers
     simulator_p5 = ContextSimulation(
         environment,
         learner_p5,
-        exploration_horizon,
+        exploration_horizon_p5,
         context_generation_period,
         experiments_p5)
-    simulator_p4 = Simulation(environment, learner_p4, exploration_horizon, experiments_p5)
+    simulator_p4 = Simulation(environment, learner_p4, exploration_horizon_p5, experiments_p5)
     tester_p5 = Tester(
         environment,
         lrns=(learner_p5, learner_p4),
         oer=optimal_expected_reward_p5,
-        horizon=exploration_horizon,
+        horizon=exploration_horizon_p5,
         exps=experiments_p5,
         sims=(simulator_p5, simulator_p4))
 
